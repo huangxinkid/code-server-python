@@ -1,7 +1,7 @@
 FROM codercom/code-server:latest
 
-LABEL maintainer="https://github.com/fxstein"
-LABEL decription="VSCode code-server with python and zsh installed"
+# LABEL maintainer="https://github.com/fxstein"
+# LABEL decription="VSCode code-server with python and zsh installed"
 
 # First lets update everything
 RUN sudo apt-get update
@@ -14,7 +14,7 @@ RUN sudo sed -i -e "s#bin/bash#bin/zsh#" /etc/passwd
 RUN sudo apt-get install python3.7 python3-pip inetutils-ping python3-venv -y
 RUN python3.7 -m pip install pip
 RUN python3.7 -m pip install wheel
-RUN python3.7 -m pip install flake8
+# RUN python3.7 -m pip install flake8
 
 # Install extensions
 RUN code-server --install-extension ms-python.python
@@ -71,8 +71,8 @@ EXPOSE 8080
 # show it in the log output. It is strongly encourgaed to set the ENV
 # PASSWORD to your own secure password. Never operate the image without
 # a secure PASSWORD
-ENV PASSWORD=
+ENV PASSWORD=123456
 
-ENTRYPOINT ["dumb-init", "--"]
+# ENTRYPOINT ["dumb-init", "--"]
 # Make sure we initialize the config if run for the very first time
-CMD ["bash", "-c", "init-config && code-server", "--host", "0.0.0.0"]
+# CMD ["bash", "-c", "init-config && code-server", "--host", "0.0.0.0"]
